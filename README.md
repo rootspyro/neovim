@@ -123,6 +123,12 @@ Commenting uses Neovim's built-in `gc` operator (no plugin required).
 [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) requires the `lazygit`
 binary to be installed and available in `PATH`.
 
+In-editor visual feedback is provided by
+[vgit.nvim](https://github.com/tanvirtin/vgit.nvim): gutter signs for
+added/changed/deleted lines and inline blame on cursor hold. It is loaded at
+startup and exposes no extra keymaps; all Git operations are done through
+lazygit.
+
 ## Plugin management
 
 | Command        | Description              |
