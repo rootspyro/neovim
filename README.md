@@ -98,6 +98,21 @@ overrides project rules.
 Telescope is lazy-loaded and uses the native `fzf` sorter. `find_files` and
 `live_grep` use `ripgrep` and respect `.gitignore`.
 
+## Editing
+
+| Key | Action |
+|-----|--------|
+| `<leader>lc` | Toggle comment on the current line |
+| `<leader>vc` | Toggle comment on the visual selection |
+
+Commenting uses Neovim's built-in `gc` operator (no plugin required).
+
+- Auto-closing of brackets and quotes is provided by
+  [nvim-autopairs](https://github.com/windwp/nvim-autopairs), with
+  treesitter-aware pairing.
+- Indentation guides (and the current scope) are drawn by
+  [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim).
+
 ## Plugin management
 
 | Command        | Description              |

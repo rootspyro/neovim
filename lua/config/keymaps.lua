@@ -17,6 +17,9 @@ M.setup = function()
   vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
   vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
   vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
+
+  vim.keymap.set("n", "<leader>lc", "gcc", { remap = true, desc = "Comment line" })
+  vim.keymap.set("v", "<leader>vc", "gc", { remap = true, desc = "Comment selection" })
 end
 
 return M
