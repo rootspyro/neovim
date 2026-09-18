@@ -14,7 +14,11 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 ## Stack
 
 - Plugin manager: **lazy.nvim**, bootstrapped in `lua/config/lazy.lua`.
-- LSP (planned): **mason.nvim** + `nvim-lspconfig` — not added yet.
+- Syntax: **nvim-treesitter** (`main` branch; highlighting enabled via
+  `vim.treesitter.start()` in `config.autocmds`).
+- LSP: **mason.nvim** + `mason-lspconfig.nvim` + `nvim-lspconfig`, using the
+  native `vim.lsp.config()` / `vim.lsp.enable()` API.
+- Completion: **blink.cmp**.
 - Leader: `<Space>`; local leader: `\`.
 
 ## Structure
@@ -22,7 +26,8 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 - `init.lua` — entry point: enables `vim.loader`, then loads `config.options`,
   bootstraps lazy, then `config.keymaps` / `config.autocmds`.
 - `lua/config/*.lua` — core modules, each exposing `M.setup()`.
-- `lua/plugins/` — plugin specs by category (create with the first plugin).
+- `lua/plugins/*.lua` — plugin specs by category: `treesitter`, `lsp`,
+  `completion`.
 - `lazy-lock.json` — pins plugin versions and **must be committed**.
 
 ## Gotchas
@@ -35,6 +40,18 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
   **not** update pinned ones; use `:Lazy update` to bump them.
 - Plugin data lives under `stdpath("data")` (`~/.local/share/nvim`), outside the
   repo. Do not add it here.
+- `nvim-treesitter` must use the **`main` branch** on Neovim 0.12 (`master` is
+  frozen and does not support 0.12). It requires `tree-sitter-cli >= 0.26.1`
+  (installed at `~/.local/bin/tree-sitter`) and a C compiler. Parsers install to
+  `stdpath("data")/site/parser`.
+- The TypeScript server is **`ts_ls`**, not the old `tsserver` (renamed in
+  nvim-lspconfig 2.x).
+- `require('lspconfig').<server>.setup()` is **deprecated**; configure with
+  `vim.lsp.config(name, {...})` and enable with `vim.lsp.enable(name)`.
+  `mason-lspconfig` auto-enables installed servers (`automatic_enable`).
+- `:Lazy sync` also runs **clean**, deleting plugins removed from `lua/plugins/`.
+- Python: `basedpyright` auto-detects a project-root `.venv` (uv convention);
+  settings live under `settings.basedpyright`.
 
 ## Verification
 

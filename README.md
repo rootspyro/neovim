@@ -7,9 +7,11 @@ Personal Neovim configuration targeting Neovim 0.12.5 and built with
 
 - Neovim >= 0.12 (tested on 0.12.5)
 - git
+- A C compiler and `tree-sitter-cli >= 0.26.1` (required to compile parsers)
+- Node.js + npm (mason installs `ts_ls`, `html`, `cssls` as npm packages)
+- Go toolchain (for `gopls` in Go projects)
 - A Nerd Font (recommended, for icons)
 - ripgrep (recommended, for search)
-- Node.js (optional, required by some language servers)
 
 ## Installation
 
@@ -37,8 +39,30 @@ Personal Neovim configuration targeting Neovim 0.12.5 and built with
 ```
 init.lua              Entry point
 lua/config/           Core modules (options, keymaps, autocmds, lazy)
-lua/plugins/          Plugin specs by category
+lua/plugins/          Plugin specs by category (treesitter, lsp, completion)
 ```
+
+## Language support
+
+LSP servers are installed automatically by mason on first launch:
+
+| Language | LSP server | Notes |
+|----------|------------|-------|
+| Go | `gopls` | |
+| Python | `basedpyright` | auto-detects a project-root `.venv` (uv) |
+| TypeScript / JavaScript | `ts_ls` | |
+| HTML | `html` | |
+| CSS | `cssls` | |
+| Lua | `lua_ls` | for editing this config |
+
+Treesitter parsers for these languages (plus JSON, YAML, Markdown and Bash) are
+installed by `nvim-treesitter`.
+
+### Python
+
+Create the virtual environment at the project root with `uv venv` (`.venv`).
+`basedpyright` detects it automatically, so no per-project configuration is
+needed.
 
 ## Plugin management
 
