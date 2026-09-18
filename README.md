@@ -12,6 +12,7 @@ Personal Neovim configuration targeting Neovim 0.12.5 and built with
 - Go toolchain (for `gopls` in Go projects)
 - A Nerd Font (recommended, for icons)
 - ripgrep (recommended, for search)
+- lazygit (for the in-editor Git UI)
 
 ## Installation
 
@@ -112,6 +113,15 @@ Commenting uses Neovim's built-in `gc` operator (no plugin required).
   treesitter-aware pairing.
 - Indentation guides (and the current scope) are drawn by
   [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim).
+
+## Git
+
+| Key | Action |
+|-----|--------|
+| `<leader>lg` | Open lazygit in a floating window |
+
+[lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) requires the `lazygit`
+binary to be installed and available in `PATH`.
 
 ## Plugin management
 
