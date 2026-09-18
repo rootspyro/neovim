@@ -9,6 +9,9 @@ M.setup = function()
   vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
   vim.keymap.set("n", "<leader>n", "<cmd>Explore<cr>", { desc = "File explorer (netrw)" })
+
+  vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", { desc = "Vertical split" })
+  vim.keymap.set("n", "<leader>vh", "<cmd>split<CR>", { desc = "Horizontal split" })
 end
 
 return M
