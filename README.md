@@ -1,0 +1,60 @@
+# Neovim Configuration
+
+Personal Neovim configuration targeting Neovim 0.12.5 and built with
+[lazy.nvim](https://github.com/folke/lazy.nvim).
+
+## Requirements
+
+- Neovim >= 0.12 (tested on 0.12.5)
+- git
+- A Nerd Font (recommended, for icons)
+- ripgrep (recommended, for search)
+- Node.js (optional, required by some language servers)
+
+## Installation
+
+1. Back up any existing configuration:
+
+   ```bash
+   mv ~/.config/nvim ~/.config/nvim.bak
+   ```
+
+2. Clone this repository:
+
+   ```bash
+   git clone <repo-url> ~/.config/nvim
+   ```
+
+3. Start Neovim. lazy.nvim bootstraps itself and installs plugins on the first
+   launch:
+
+   ```bash
+   nvim
+   ```
+
+## Structure
+
+```
+init.lua              Entry point
+lua/config/           Core modules (options, keymaps, autocmds, lazy)
+lua/plugins/          Plugin specs by category
+```
+
+## Plugin management
+
+| Command        | Description              |
+|----------------|--------------------------|
+| `:Lazy`        | Open the lazy dashboard  |
+| `:Lazy sync`   | Install missing plugins  |
+| `:Lazy update` | Update plugins           |
+| `:Lazy profile`| Show startup profiling   |
+
+`lazy-lock.json` is committed to pin plugin versions.
+
+## Development
+
+Check that the configuration loads without errors:
+
+```bash
+nvim --headless -c 'qa!' 2>&1
+```
