@@ -12,6 +12,7 @@ return {
       },
       "neovim/nvim-lspconfig",
       "saghen/blink.cmp",
+      "b0o/SchemaStore.nvim",
     },
     opts = {
       ensure_installed = {
@@ -21,6 +22,9 @@ return {
         "ts_ls",
         "html",
         "cssls",
+        "jsonls",
+        "yamlls",
+        "marksman",
       },
     },
     config = function(_, opts)
@@ -46,6 +50,25 @@ return {
             runtime = { version = "LuaJIT" },
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
+          },
+        },
+      })
+
+      vim.lsp.config("jsonls", {
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      })
+
+      vim.lsp.config("yamlls", {
+        settings = {
+          yaml = {
+            schemaStore = { enable = false },
+            schemas = require("schemastore").yaml.schemas(),
+            format = { enable = true },
           },
         },
       })
