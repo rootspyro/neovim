@@ -28,6 +28,18 @@ return {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
 
+      vim.diagnostic.config({
+        virtual_text = true,
+        severity_sort = true,
+        float = { border = "rounded", source = true },
+      })
+
+      vim.api.nvim_create_autocmd("CursorHold", {
+        callback = function()
+          vim.diagnostic.open_float(nil, { focusable = false })
+        end,
+      })
+
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
