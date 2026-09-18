@@ -39,7 +39,7 @@ Personal Neovim configuration targeting Neovim 0.12.5 and built with
 ```
 init.lua              Entry point
 lua/config/           Core modules (options, keymaps, autocmds, lazy)
-lua/plugins/          Plugin specs by category (treesitter, lsp, completion)
+lua/plugins/          Plugin specs by category
 ```
 
 ## Language support
@@ -85,6 +85,18 @@ overrides project rules.
 
 - Format the current buffer manually with `<leader>cf`.
 - `eslint_d` only runs when an ESLint config is present in the project.
+
+## File navigation
+
+| Key | Action |
+|-----|--------|
+| `<leader>ff` | Find files (Telescope) |
+| `<leader>fg` | Live grep in file contents (Telescope) |
+| `<leader>fb` | Open buffers (Telescope) |
+| `<leader>n` | Native file explorer (netrw, tree view) |
+
+Telescope is lazy-loaded and uses the native `fzf` sorter. `find_files` and
+`live_grep` use `ripgrep` and respect `.gitignore`.
 
 ## Plugin management
 

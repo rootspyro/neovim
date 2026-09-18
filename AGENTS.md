@@ -29,7 +29,7 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
   bootstraps lazy, then `config.keymaps` / `config.autocmds`.
 - `lua/config/*.lua` — core modules, each exposing `M.setup()`.
 - `lua/plugins/*.lua` — plugin specs by category: `treesitter`, `lsp`,
-  `completion`, `lint-format`.
+  `completion`, `lint-format`, `telescope`.
 - `lazy-lock.json` — pins plugin versions and **must be committed**.
 
 ## Gotchas
@@ -60,6 +60,8 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 - `eslint_d` only runs when an ESLint config is found (`vim.fs.root`).
 - `mason.nvim` prepends its `bin` dir to `PATH`, which is how conform and
   nvim-lint resolve mason-installed tools.
+- netrw is an **opt-in package** in Neovim 0.12 (`pack/dist/opt/netrw`). Do not
+  add `netrwPlugin` to `disabled_plugins` or `<leader>n` (`:Explore`) breaks.
 
 ## Verification
 
