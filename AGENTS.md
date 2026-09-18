@@ -18,9 +18,13 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
   `vim.treesitter.start()` in `config.autocmds`).
 - LSP: **mason.nvim** + `mason-lspconfig.nvim` + `nvim-lspconfig`, using the
   native `vim.lsp.config()` / `vim.lsp.enable()` API.
-- Completion: **blink.cmp**.
+- Completion: **blink.cmp** (+ `friendly-snippets`); inline AI suggestions via
+  **supermaven-nvim**.
 - Formatting/linting: **conform.nvim** + **nvim-lint**; formatters and linters
   are installed by `mason-tool-installer.nvim`.
+- UI: **gruvbox.nvim** (colorscheme), **lualine.nvim** (statusline),
+  **indent-blankline.nvim** (indent guides).
+- Terminal: **toggleterm.nvim** (`<leader>t`).
 - Leader: `<Space>`; local leader: `\`.
 
 ## Structure
@@ -28,8 +32,9 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 - `init.lua` — entry point: enables `vim.loader`, then loads `config.options`,
   bootstraps lazy, then `config.keymaps` / `config.autocmds`.
 - `lua/config/*.lua` — core modules, each exposing `M.setup()`.
-- `lua/plugins/*.lua` — plugin specs by category: `treesitter`, `lsp`,
-  `completion`, `lint-format`, `telescope`.
+- `lua/plugins/*.lua` — plugin specs by category: `colorscheme`, `completion`,
+  `editing`, `git`, `lint-format`, `lsp`, `lualine`, `render-markdown`,
+  `telescope`, `terminal`, `treesitter`.
 - `lazy-lock.json` — pins plugin versions and **must be committed**.
 
 ## Gotchas

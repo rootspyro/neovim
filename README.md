@@ -26,7 +26,7 @@ Personal Neovim configuration targeting Neovim 0.12.5 and built with
 2. Clone this repository:
 
    ```bash
-   git clone <repo-url> ~/.config/nvim
+   git clone git@github.com:rootspyro/neovim.git ~/.config/nvim
    ```
 
 3. Start Neovim. lazy.nvim bootstraps itself and installs plugins on the first
@@ -43,6 +43,16 @@ init.lua              Entry point
 lua/config/           Core modules (options, keymaps, autocmds, lazy)
 lua/plugins/          Plugin specs by category
 ```
+
+## Appearance
+
+- Colorscheme: [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+  (dark, medium contrast).
+- Statusline: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim),
+  global, with branch, diff, diagnostics, filename and cursor position.
+- Indentation guides (and the current scope) are drawn by
+  [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim).
+- Yanked text is briefly highlighted.
 
 ## Language support
 
@@ -65,6 +75,8 @@ JSON and YAML schema validation is powered by
 `package.json`, `tsconfig.json` or GitHub Actions workflows get completion and
 diagnostics out of the box.
 
+Diagnostics are shown as virtual text and in a floating window on cursor hold.
+
 Treesitter parsers for these languages and more (Bash, Vim, query, regex, ...)
 are installed by `nvim-treesitter`.
 
@@ -73,6 +85,20 @@ are installed by `nvim-treesitter`.
 Create the virtual environment at the project root with `uv venv` (`.venv`).
 `basedpyright` detects it automatically, so no per-project configuration is
 needed.
+
+## Completion
+
+- [blink.cmp](https://github.com/saghen/blink.cmp) provides LSP, path, snippet
+  and buffer completions. Accept with `<Enter>`; documentation is shown
+  automatically.
+- [supermaven-nvim](https://github.com/supermaven-inc/supermaven-nvim) adds
+  inline AI suggestions:
+
+  | Key     | Action              |
+  | ------- | ------------------- |
+  | `<Tab>` | Accept suggestion   |
+  | `<C-j>` | Accept next word    |
+  | `<C-]>` | Clear suggestion    |
 
 ## Formatting and linting
 
@@ -96,7 +122,22 @@ overrides project rules.
 - Format the current buffer manually with `<leader>cf`.
 - `eslint_d` only runs when an ESLint config is present in the project.
 
-## File navigation
+## Keymaps
+
+Leader is `<Space>`; local leader is `\`.
+
+### Windows and navigation
+
+| Key                                   | Action                              |
+| ------------------------------------- | ----------------------------------- |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Move to window (left/down/up/right) |
+| `<leader>vs`                          | Vertical split                      |
+| `<leader>vh`                          | Horizontal split                    |
+| `<C-Left>` / `<C-Right>`              | Decrease / increase width           |
+| `<C-Down>` / `<C-Up>`                 | Decrease / increase height          |
+| `<Esc>`                               | Clear search highlights             |
+
+### Files and search
 
 | Key          | Action                                  |
 | ------------ | --------------------------------------- |
@@ -108,20 +149,20 @@ overrides project rules.
 Telescope is lazy-loaded and uses the native `fzf` sorter. `find_files` and
 `live_grep` use `ripgrep` and respect `.gitignore`.
 
-## Editing
+### Editing
 
 | Key          | Action                                 |
 | ------------ | -------------------------------------- |
 | `<leader>lc` | Toggle comment on the current line     |
 | `<leader>vc` | Toggle comment on the visual selection |
+| `<leader>cf` | Format the current buffer              |
+| `<leader>t`  | Toggle a horizontal terminal           |
 
 Commenting uses Neovim's built-in `gc` operator (no plugin required).
 
 - Auto-closing of brackets and quotes is provided by
   [nvim-autopairs](https://github.com/windwp/nvim-autopairs), with
   treesitter-aware pairing.
-- Indentation guides (and the current scope) are drawn by
-  [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim).
 - Markdown buffers are rendered in place (headings, lists, code blocks, tables)
   by [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim);
   the underlying text is unchanged, so editing stays plain Markdown.
