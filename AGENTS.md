@@ -19,6 +19,8 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 - LSP: **mason.nvim** + `mason-lspconfig.nvim` + `nvim-lspconfig`, using the
   native `vim.lsp.config()` / `vim.lsp.enable()` API.
 - Completion: **blink.cmp**.
+- Formatting/linting: **conform.nvim** + **nvim-lint**; formatters and linters
+  are installed by `mason-tool-installer.nvim`.
 - Leader: `<Space>`; local leader: `\`.
 
 ## Structure
@@ -27,7 +29,7 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
   bootstraps lazy, then `config.keymaps` / `config.autocmds`.
 - `lua/config/*.lua` — core modules, each exposing `M.setup()`.
 - `lua/plugins/*.lua` — plugin specs by category: `treesitter`, `lsp`,
-  `completion`.
+  `completion`, `lint-format`.
 - `lazy-lock.json` — pins plugin versions and **must be committed**.
 
 ## Gotchas
@@ -52,6 +54,12 @@ Personal Neovim configuration (Lua) targeting **Neovim 0.12.5**, versioned at
 - `:Lazy sync` also runs **clean**, deleting plugins removed from `lua/plugins/`.
 - Python: `basedpyright` auto-detects a project-root `.venv` (uv convention);
   settings live under `settings.basedpyright`.
+- Formatting is **project-first**: conform passes no style options, so
+  `pyproject.toml`, `.prettierrc`, `stylua.toml`, etc. take precedence. The
+  editor only decides which tool runs and when (format-on-save, `<leader>cf`).
+- `eslint_d` only runs when an ESLint config is found (`vim.fs.root`).
+- `mason.nvim` prepends its `bin` dir to `PATH`, which is how conform and
+  nvim-lint resolve mason-installed tools.
 
 ## Verification
 

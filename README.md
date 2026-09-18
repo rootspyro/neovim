@@ -64,6 +64,28 @@ Create the virtual environment at the project root with `uv venv` (`.venv`).
 `basedpyright` detects it automatically, so no per-project configuration is
 needed.
 
+## Formatting and linting
+
+Formatting runs on save and is provided by
+[conform.nvim](https://github.com/stevearc/conform.nvim); linting by
+[nvim-lint](https://github.com/mfussenegger/nvim-lint). Tools are installed
+automatically by mason.
+
+| Language | Formatter | Linter |
+|----------|-----------|--------|
+| Go | `goimports` + `gofumpt` | `golangci-lint` |
+| Python | `ruff` | `ruff` |
+| TypeScript / JavaScript | `prettierd` | `eslint_d` |
+| HTML / CSS / JSON / YAML / Markdown | `prettierd` | |
+| Lua | `stylua` | |
+
+Style is **project-first**: formatters read your project configuration
+(`pyproject.toml`, `.prettierrc`, `stylua.toml`, ...), so the editor never
+overrides project rules.
+
+- Format the current buffer manually with `<leader>cf`.
+- `eslint_d` only runs when an ESLint config is present in the project.
+
 ## Plugin management
 
 | Command        | Description              |
