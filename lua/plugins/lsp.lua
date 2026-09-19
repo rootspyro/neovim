@@ -44,6 +44,17 @@ return {
         end,
       })
 
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local function map(lhs, rhs, desc)
+            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+          end
+          map("gd", vim.lsp.buf.definition, "Go to definition")
+          map("gD", vim.lsp.buf.declaration, "Go to declaration")
+          map("gi", vim.lsp.buf.implementation, "Go to implementation")
+        end,
+      })
+
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
