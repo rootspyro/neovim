@@ -170,6 +170,7 @@ Leader is `<Space>`; local leader is `\`.
 | `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | Move to window (left/down/up/right) |
 | `<leader>vs`                          | Vertical split                      |
 | `<leader>vh`                          | Horizontal split                    |
+| `<leader>x`                           | Delete buffer and close window      |
 | `<C-Left>` / `<C-Right>`              | Decrease / increase width           |
 | `<C-Down>` / `<C-Up>`                 | Decrease / increase height          |
 | `<Esc>`                               | Clear search highlights             |

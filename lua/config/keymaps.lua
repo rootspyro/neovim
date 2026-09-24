@@ -12,6 +12,7 @@ M.setup = function()
 
   vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", { desc = "Vertical split" })
   vim.keymap.set("n", "<leader>vh", "<cmd>split<CR>", { desc = "Horizontal split" })
+  vim.keymap.set("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Delete buffer and close window" })
 
   vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
   vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
