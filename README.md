@@ -122,6 +122,43 @@ overrides project rules.
 - Format the current buffer manually with `<leader>cf`.
 - `eslint_d` only runs when an ESLint config is present in the project.
 
+## Debugging
+
+Debugging is provided by [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+with the [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) panels and
+[nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
+inline values. Debug adapters are installed automatically by mason:
+
+| Language                | Adapter                              |
+| ----------------------- | ------------------------------------ |
+| Go                      | `delve`                              |
+| Python                  | `debugpy`                            |
+| TypeScript / JavaScript | `js-debug-adapter` (vscode-js-debug) |
+
+- Python uses mason's `debugpy-adapter` executable; the debugged program runs in
+  the project `.venv` (auto-detected, like `basedpyright`).
+- Go uses `dlv` (delve) from mason's `bin` directory.
+- TypeScript / JavaScript uses the `pwa-node` adapter backed by vscode-js-debug,
+  with launch and attach configurations.
+
+### Debug keymaps
+
+| Key          | Action                      |
+| ------------ | --------------------------- |
+| `<F5>`       | Start / continue            |
+| `<F10>`      | Step over                   |
+| `<F11>`      | Step into                   |
+| `<F12>`      | Step out                    |
+| `<leader>b`  | Toggle breakpoint           |
+| `<leader>B`  | Conditional breakpoint      |
+| `<leader>lp` | Log point                   |
+| `<leader>dt` | Debug nearest test (Go/Py)  |
+| `<leader>dr` | Open REPL                   |
+| `<leader>dl` | Run last session            |
+| `<leader>dh` | Hover variable              |
+| `<leader>dp` | Preview variable            |
+| `<leader>du` | Toggle dap-ui               |
+
 ## Keymaps
 
 Leader is `<Space>`; local leader is `\`.
